@@ -36,14 +36,14 @@ circular_buffer_handler circular_buffer_init(uint8_t* buffer, uint16_t size);
  *
  * @brief Free a circular buffer structure instance.
  * 
- * @param [in] pcbh pointer to a circular buffer struct instance.
+ * @param [in] ppcbh pointer to a circular buffer handler instance.
  * 
  * The functión free the dynamic memory space allocated for a circular buffer
  * instance. Function should only be called if the instance was inited with
  * circular_buffer_init(). Funtion does not free data buffer form memory, usser
  * is responsible for that.
  */
-void circular_buffer_free(circular_buffer_handler pcbh);
+void * circular_buffer_free(circular_buffer_handler *ppcbh);
 
 /**
  * @fn circular_buffer_instance_init()
@@ -119,7 +119,7 @@ void circular_buffer_push(circular_buffer_handler pcbh, uint8_t data);
  *
  * @return 0 on succes, -1 if the buffer is full and fails
  */
-int8_t circular_buf_put(circular_buffer_handler pcbh, uint8_t data);
+int8_t circular_buffer_put(circular_buffer_handler pcbh, uint8_t data);
 
 /**
  * @fn circular_buffer_pop()

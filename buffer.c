@@ -66,11 +66,15 @@ circular_buffer_handler circular_buffer_init(uint8_t *pBuffer, uint16_t size){
 /**
  * circular_buffer_free() - Free a circular buffer structure instance
  */
-void circular_buffer_free(circular_buffer_handler pcbh)
+void * circular_buffer_free(circular_buffer_handler *ppcbh)
 {
-    assert(pcbh);
+    assert(ppcbh);
 
-    free(pcbh);
+    free(*ppcbh);
+    
+    *ppcbh = NULL; 
+
+    return *ppcbh;
 }
 
 /**
@@ -144,7 +148,7 @@ int8_t circular_buffer_put(circular_buffer_handler pcbh, uint8_t data)
     assert(pcbh && pcbh->pBuffer);
 
     // Check if buffer is full
-    if( circular_buffer_count(pcbh) < pcbh->size)
+    if( circular_buffer_count(pcbh) < (pcbh->size-1))
     {
 	// Buffer still have space
 	rc = 0;
@@ -159,7 +163,7 @@ int8_t circular_buffer_put(circular_buffer_handler pcbh, uint8_t data)
 /**
  * circular_buffer_pop() - Retrieve data from the circular buffer.
  */
-int8_t circular_buf_pop(circular_buffer_handler pcbh, uint8_t * data)
+int8_t circular_buffer_pop(circular_buffer_handler pcbh, uint8_t *data)
 {
     int8_t rc;
 
@@ -175,7 +179,7 @@ int8_t circular_buf_pop(circular_buffer_handler pcbh, uint8_t * data)
     return rc;
 }
 /**
- * circular_buffer_drop() - Retrieve data from the circular fufer until it got
+ * circular_buffer_drop() - Retrieve data from the circular buffer until it got
  *                          empty.
  */
 int8_t circular_buffer_drop(circular_buffer_handler pcbh, uint8_t * data, uint16_t data_length){
