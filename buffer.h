@@ -118,6 +118,8 @@ void circular_buffer_push(circular_buffer_handler pcbh, uint8_t data);
  * @param [in] pcbh Pointer to a circular buffer struct instance
  *
  * @return 0 on succes, -1 if the buffer is full and fails
+ *
+ * Buffer can hold up to size-1 elements
  */
 int8_t circular_buffer_put(circular_buffer_handler pcbh, uint8_t data);
 
