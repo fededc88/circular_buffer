@@ -1,3 +1,18 @@
+/*
+ * file: buffer.h
+ *
+ * A general purpose circular buffer implementation.
+ * 
+ * author: Federico D. Ceccarelli 
+ * 
+ * Do you find this project interesting or useful for your work? Please let me
+ * know (fededc88@gmail.com, github:@fededc88).
+ *
+ * Any kind of submission are welcome!
+ */
+
+#ifndef __BUFFER_H__
+#define __BUFFER_H__
 
 #include <stdlib.h>
 #include <assert.h>
@@ -188,6 +203,7 @@ uint16_t circular_buffer_count(circular_buffer_handler pcbh);
  */
 uint16_t circular_buffer_size(circular_buffer_handler pcbh);
 
+#endif
 //
 // End of file.
 //
