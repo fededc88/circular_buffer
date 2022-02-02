@@ -30,7 +30,8 @@ typedef circular_buffer* circular_buffer_handler;
  * @brief Allocate & Initialize a circular_buffer instance
  *
  * @param [in] pBuffer Pointer to a uint8_t type array.
- * @param [in] size Size of the pBuffer array
+ * @param [in] width Size of one element of the array
+ * @param [in] size Number of elements of the pBuffer array
  *
  * @return circular_buffer_handler Pointer to a circular buffer struct instance
  *
@@ -44,7 +45,8 @@ typedef circular_buffer* circular_buffer_handler;
  * buffer struct instance and take a look to circular_buffer_struct_init()
  * function to initialize it.
  */
-circular_buffer_handler circular_buffer_init(uint8_t* buffer, uint16_t size);
+circular_buffer_handler circular_buffer_init(uint8_t *pBuffer, size_t width,
+                                             uint16_t size);
 
 /**
  * @fn circular_buffer_free()
@@ -67,6 +69,7 @@ void * circular_buffer_free(circular_buffer_handler *ppcbh);
  *
  * @param [in] pcbinst Pointer to a circular_buffer struct instance
  * @param [in] pBuffer Pointer to a uint8_t type array.
+ * @param [in] width Size of one element of the array
  * @param [in] size Size of the pBuffer array
  *
  * The function initialize an statically decleared circular buffer instance 
@@ -79,7 +82,8 @@ void * circular_buffer_free(circular_buffer_handler *ppcbh);
  * NOTE: On embedded system is recomended to initialize the API using this
  * function.
  */
-void circular_buffer_instance_init(circular_buffer *pcbinst, uint8_t* buffer, uint16_t size);
+void circular_buffer_instance_init(circular_buffer *pcbinst, uint8_t *pBuffer,
+                                   size_t width, uint16_t size);
 
 /**
  * @fn circular_buffer_instance_free()
@@ -118,12 +122,13 @@ void circular_buffer_dump(circular_buffer_handler pcbh);
  * @brief Push data to the circular buffer. 
  * 
  * @param [in] pcbh Pointer to a circular buffer struct instance
+ * @param [in] data Pointer to data type from where will be copied the data 
  *
  * Function push a new value to te circular buffer. If there is no more space
  * the older data will fall from the buffer. Old data is overwritten if there is
  * no more available space.
  */
-void circular_buffer_push(circular_buffer_handler pcbh, uint8_t data);
+void circular_buffer_push(circular_buffer_handler pcbh, void *data);
 
 /**
  * @fn circular_buffer_put()
@@ -131,12 +136,13 @@ void circular_buffer_push(circular_buffer_handler pcbh, uint8_t data);
  * @brief Put data in the circular buffer. 
  * 
  * @param [in] pcbh Pointer to a circular buffer struct instance
- *
+ * @param [in] data Pointer to data type from where will be copied the data 
+ * 
  * @return 0 on succes, -1 if the buffer is full and fails
  *
  * Buffer can hold up to size-1 elements
  */
-int8_t circular_buffer_put(circular_buffer_handler pcbh, uint8_t data);
+int8_t circular_buffer_put(circular_buffer_handler pcbh, void *data);
 
 /**
  * @fn circular_buffer_pop()
@@ -144,14 +150,14 @@ int8_t circular_buffer_put(circular_buffer_handler pcbh, uint8_t data);
  * @brief Retrieve data from the circular buffer. 
  * 
  * @param [in] pcbh Pointer to a circular buffer struct instance
- * @param [in] data Pointer to uint8_t data type where will be copied the retrieved data
+ * @param [in] data Pointer to data type where will be copied the retrieved data
  *
  * @return 0 on succes, -1 if the buffer is empty and fails
  *
  * Function retrieve a value from the buffer, removes it from buffer and copy it
  * to data addres.
  */
-int8_t circular_buffer_pop(circular_buffer_handler pcbh, uint8_t * data);
+int8_t circular_buffer_pop(circular_buffer_handler pcbh, void *data);
 
 /**
  * @fn circular_buffer_drop()
@@ -159,7 +165,7 @@ int8_t circular_buffer_pop(circular_buffer_handler pcbh, uint8_t * data);
  * @brief Retrieve data from the circular buffer until it got empty.
  * 
  * @param [in] pcbh Pointer to a circular buffer struct instance
- * @param [in] data Pointer to uint8_t data type where will be copied the retrieved data
+ * @param [in] data Pointer to data type where will be copied the retrieved data
  * @param [in] data_length Length of data pointed array. 
  *
  * @return 0 on succes, -1 if the buffer is empty or data array isn't big enough.
@@ -168,7 +174,8 @@ int8_t circular_buffer_pop(circular_buffer_handler pcbh, uint8_t * data);
  * them to data addres.
  * Function checks that the number of element to be copied fits on data array.
  */
-int8_t circular_buffer_drop(circular_buffer_handler pcbh, uint8_t * data, uint16_t data_length);
+int8_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
+                            uint16_t data_length);
 
 /**
  * @fn circular_buffer_empty()
