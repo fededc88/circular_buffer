@@ -53,7 +53,7 @@ static void rewind_pointer(circular_buffer_handler pcbh)
 /**
  * @circular_buffer_init() - Allocate & Initialize a circular_buffer instance
  */
-circular_buffer_handler circular_buffer_init(uint8_t *pBuffer, size_t width,
+circular_buffer_handler circular_buffer_init(void *pBuffer, size_t width,
                                              uint16_t size)
 {
 
@@ -89,7 +89,7 @@ void * circular_buffer_free(circular_buffer_handler *ppcbh)
 /**
  * circular_buffer_instance_init() - Initialize a circular_buffer instance
  */
-void circular_buffer_instance_init(circular_buffer *pcbinst, uint8_t *pBuffer,
+void circular_buffer_instance_init(circular_buffer *pcbinst, void *pBuffer,
         size_t width, uint16_t size)
 {
     assert(pcbinst && pBuffer);
@@ -148,7 +148,7 @@ void circular_buffer_push(circular_buffer_handler pcbh, void *data)
 
     assert(pcbh && pcbh->pBuffer && data);
  
-    s1 = pcbh->pBuffer+(pcbh->head * pcbh->width);
+    s1 = (pcbh->pBuffer + (pcbh->head * pcbh->width));
     memcpy(s1, data, pcbh->width);
 
     forward_pointer(pcbh);
@@ -162,7 +162,7 @@ int8_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
     void *s1;
     int8_t rc = -1;
 
-    assert(pcbh && pcbh->pBuffer);
+    assert(pcbh && pcbh->pBuffer && data);
 
     // Check if buffer is full
     if( circular_buffer_count(pcbh) < (pcbh->size-1))
@@ -170,7 +170,7 @@ int8_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
         // Buffer still have space
         rc = 0;
 
-        s1 = pcbh->pBuffer+(pcbh->head * pcbh->width);
+        s1 = (pcbh->pBuffer + (pcbh->head * pcbh->width));
         memcpy(s1, data, pcbh->width);
 
         forward_pointer(pcbh);
@@ -188,12 +188,12 @@ int8_t circular_buffer_pop(circular_buffer_handler pcbh, void *data)
     void *s2;
     int8_t rc;
 
-    assert(pcbh && data && pcbh->pBuffer);
+    assert(pcbh && data && pcbh->pBuffer && data);
 
     if(!circular_buffer_empty(pcbh))
     {
         rc = 0;
-        s2 = pcbh->pBuffer+(pcbh->head * pcbh->width);
+        s2 = pcbh->pBuffer + (pcbh->tail * pcbh->width);
         memcpy(data, s2, pcbh->width);
         rewind_pointer(pcbh);
     }

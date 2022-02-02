@@ -45,7 +45,7 @@ typedef circular_buffer* circular_buffer_handler;
  * buffer struct instance and take a look to circular_buffer_struct_init()
  * function to initialize it.
  */
-circular_buffer_handler circular_buffer_init(uint8_t *pBuffer, size_t width,
+circular_buffer_handler circular_buffer_init(void *pBuffer, size_t width,
                                              uint16_t size);
 
 /**
@@ -82,7 +82,7 @@ void * circular_buffer_free(circular_buffer_handler *ppcbh);
  * NOTE: On embedded system is recomended to initialize the API using this
  * function.
  */
-void circular_buffer_instance_init(circular_buffer *pcbinst, uint8_t *pBuffer,
+void circular_buffer_instance_init(circular_buffer *pcbinst, void *pBuffer,
                                    size_t width, uint16_t size);
 
 /**
