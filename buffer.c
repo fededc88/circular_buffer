@@ -157,10 +157,10 @@ void circular_buffer_push(circular_buffer_handler pcbh, void *data)
 /**
  * circular_buffer_put() - Put data in the circular buffer.
  */
-int8_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
+int16_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
 {
     void *s1;
-    int8_t rc = -1;
+    int16_t rc = -1;
 
     assert(pcbh && pcbh->pBuffer && data);
 
@@ -178,10 +178,10 @@ int8_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
 /**
  * circular_buffer_pop() - Retrieve data from the circular buffer.
  */
-int8_t circular_buffer_pop(circular_buffer_handler pcbh, void *data)
+int16_t circular_buffer_pop(circular_buffer_handler pcbh, void *data)
 {
     void *s2;
-    int8_t rc;
+    int16_t rc;
 
     assert(pcbh && data && pcbh->pBuffer && data);
 
@@ -199,10 +199,10 @@ int8_t circular_buffer_pop(circular_buffer_handler pcbh, void *data)
  * circular_buffer_drop() - Retrieve data from the circular buffer until it got
  *                          empty.
  */
-int8_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
+int16_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
                              uint16_t data_length)
 {
-    int8_t rc = -1;
+    int16_t rc = -1;
 
     assert(pcbh && data && pcbh->pBuffer);
 
@@ -222,9 +222,9 @@ int8_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
 /**
  * circular_buffer_empty() - Checks if the circular buffer is empty
  */
-uint8_t circular_buffer_empty(circular_buffer_handler pcbh)
+uint16_t circular_buffer_empty(circular_buffer_handler pcbh)
 {
-    uint8_t rc = -1;
+    uint16_t rc = -1;
 
     assert(pcbh);
 

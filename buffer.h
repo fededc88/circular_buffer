@@ -29,7 +29,7 @@ typedef circular_buffer* circular_buffer_handler;
  *
  * @brief Allocate & Initialize a circular_buffer instance
  *
- * @param [in] pBuffer Pointer to a uint8_t type array.
+ * @param [in] pBuffer Pointer to a uint16_t type array.
  * @param [in] width Size of one element of the array
  * @param [in] size Number of elements of the pBuffer array
  *
@@ -68,7 +68,7 @@ void * circular_buffer_free(circular_buffer_handler *ppcbh);
  * @brief Initialize a circular_buffer instance
  *
  * @param [in] pcbinst Pointer to a circular_buffer struct instance
- * @param [in] pBuffer Pointer to a uint8_t type array.
+ * @param [in] pBuffer Pointer to a uint16_t type array.
  * @param [in] width Size of one element of the array
  * @param [in] size Size of the pBuffer array
  *
@@ -142,7 +142,7 @@ void circular_buffer_push(circular_buffer_handler pcbh, void *data);
  *
  * Buffer can hold up to size-1 elements
  */
-int8_t circular_buffer_put(circular_buffer_handler pcbh, void *data);
+int16_t circular_buffer_put(circular_buffer_handler pcbh, void *data);
 
 /**
  * @fn circular_buffer_pop()
@@ -157,7 +157,7 @@ int8_t circular_buffer_put(circular_buffer_handler pcbh, void *data);
  * Function retrieve a value from the buffer, removes it from buffer and copy it
  * to data addres.
  */
-int8_t circular_buffer_pop(circular_buffer_handler pcbh, void *data);
+int16_t circular_buffer_pop(circular_buffer_handler pcbh, void *data);
 
 /**
  * @fn circular_buffer_drop()
@@ -174,7 +174,7 @@ int8_t circular_buffer_pop(circular_buffer_handler pcbh, void *data);
  * them to data addres.
  * Function checks that the number of element to be copied fits on data array.
  */
-int8_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
+int16_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
                             uint16_t data_length);
 
 /**
@@ -186,7 +186,7 @@ int8_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
  *
  * @return 1 if the buffer is empty, else return 0
  */
-uint8_t circular_buffer_empty(circular_buffer_handler pcbh);
+uint16_t circular_buffer_empty(circular_buffer_handler pcbh);
 
 /**
  * @fn circular_buffer_count()
