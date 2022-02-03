@@ -169,15 +169,10 @@ int8_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
     {
         // Buffer still have space
         rc = 0;
-
-        s1 = (pcbh->pBuffer + (pcbh->head * pcbh->width));
-        memcpy(s1, data, pcbh->width);
-
-        forward_pointer(pcbh);
+        circular_buffer_push(pcbh, data);
     }
 
     return rc;
-
 }
 
 /**
