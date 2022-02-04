@@ -18,6 +18,20 @@
 #include <assert.h>
 #include <stdint.h>
 
+/*
+ * Circular Buffer structure definition.
+ *
+ * NOTE: Structure could be moved and defined in the .c source file to prevent
+ * API users to edit it and encourage the API funtions use. 
+ */
+struct circular_buffer_t {
+    void *pBuffer;
+    size_t width;
+    uint16_t head;
+    uint16_t tail;
+    uint16_t size;
+};
+
 // Opaque circular buffer structure
 typedef struct circular_buffer_t circular_buffer;
 

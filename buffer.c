@@ -1,21 +1,19 @@
+/*
+ * file: buffer.c
+ *
+ * A general purpose circular buffer implementation.
+ * 
+ * author: Federico D. Ceccarelli 
+ * 
+ * Do you find this project interesting or useful for your work? Please let me
+ * know (fededc88@gmail.com, github:@fededc88).
+ *
+ * Any kind of submission are welcome!
+ */
+
 #include "buffer.h"
 
-
 #include <string.h>
-
-/*
- * Circular Buffer structure definition.
- *
- * NOTE: Stricture is defined here to prevent API users to edit it and encourage
- * the API funtions use. 
- */
-struct circular_buffer_t {
-    void *pBuffer;
-    size_t width;
-    uint16_t head;
-    uint16_t tail;
-    uint16_t size;
-};
 
 /* local functions prototype declaration */
 static void forward_pointer(circular_buffer_handler pcbh);
@@ -56,7 +54,6 @@ static void rewind_pointer(circular_buffer_handler pcbh)
 circular_buffer_handler circular_buffer_init(void *pBuffer, size_t width,
                                              uint16_t size)
 {
-
     circular_buffer_handler pcbh;
 
     assert(pBuffer && size);
@@ -67,10 +64,7 @@ circular_buffer_handler circular_buffer_init(void *pBuffer, size_t width,
 
     circular_buffer_instance_init(pcbh, pBuffer, width, size);
 
-    circular_buffer_reset(pcbh);
-
     return pcbh;
-
 }
 
 /**
@@ -159,7 +153,6 @@ void circular_buffer_push(circular_buffer_handler pcbh, void *data)
  */
 int16_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
 {
-    void *s1;
     int16_t rc = -1;
 
     assert(pcbh && pcbh->pBuffer && data);
@@ -224,14 +217,14 @@ int16_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
  */
 uint16_t circular_buffer_empty(circular_buffer_handler pcbh)
 {
-    uint16_t rc = -1;
+    uint16_t rc = 0;
 
     assert(pcbh);
 
     if (pcbh->head == pcbh->tail)
-        return 1;
-    else
-        return 0;
+       rc = 1;
+
+    return rc;
 }
 
 /**

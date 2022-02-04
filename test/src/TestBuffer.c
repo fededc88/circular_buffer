@@ -11,6 +11,8 @@ struct test
     char character;
 };
 
+circular_buffer cb;
+
 /* circular_buffer_handler declaration - funtion as a pointer */
 circular_buffer_handler cbh;
 
@@ -146,6 +148,22 @@ int main(void)
 //    }
 
     RUN_TEST(test_circular_buffer_free);
+
+    cbh = &cb;
+    circular_buffer_instance_init(cbh, (void*)array, sizeof(struct test), ARRAY_LEN);
+
+//    for(int i = 0; i<1000; i++)
+//    {
+
+        RUN_TEST(test_push_buffer);
+        RUN_TEST(test_put_pop);
+
+        RUN_TEST(test_load_entire_buffer);
+        RUN_TEST(test_load_partial_buffer);
+//    }
+
+    //RUN_TEST(test_circular_buffer_free);
+
 
     return UNITY_END();
 }
