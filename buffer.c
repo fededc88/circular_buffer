@@ -174,7 +174,7 @@ int16_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
 int16_t circular_buffer_pop(circular_buffer_handler pcbh, void *data)
 {
     void *s2;
-    int16_t rc;
+    int16_t rc = -1;
 
     assert(pcbh && data && pcbh->pBuffer && data);
 
