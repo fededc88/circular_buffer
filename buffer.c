@@ -1,27 +1,19 @@
-/*
- * file: buffer.c
+/**
+ * @file: buffer.c
  *
- * A general purpose circular buffer implementation.
+ * @brief A general purpose circular buffer implementation.
  * 
- * author: Federico D. Ceccarelli 
- * 
- * Do you find this project interesting or useful for your work? Please let me
- * know (fededc88@gmail.com, github:@fededc88).
- *
- * Any kind of submission are welcome!
+ * @author: Federico D. Ceccarelli 
  */
 
 #include "buffer.h"
-
 #include <string.h>
 
 /* local functions prototype declaration */
 static void forward_pointer(circular_buffer_handler pcbh);
 static void rewind_pointer(circular_buffer_handler pcbh);
 
-/**
- * forward_pointer() - Forward the buffer head pointer
- */
+/* forward_pointer() - Forward the buffer head pointer */
 static void forward_pointer(circular_buffer_handler pcbh)
 {
 	assert(pcbh);
@@ -36,9 +28,7 @@ static void forward_pointer(circular_buffer_handler pcbh)
 	}
 }
 
-/**
- * rewind_pointer() - rewind the tail pointer
- */
+/* rewind_pointer() - rewind the tail pointer */
 static void rewind_pointer(circular_buffer_handler pcbh)
 {
 	assert(pcbh);
@@ -48,9 +38,7 @@ static void rewind_pointer(circular_buffer_handler pcbh)
 
 }
 
-/**
- * @circular_buffer_init() - Allocate & Initialize a circular_buffer instance
- */
+/* circular_buffer_init() - Allocate & Initialize a circular_buffer instance */
 circular_buffer_handler circular_buffer_init(void *pBuffer, size_t width,
                                              uint16_t size)
 {
@@ -67,10 +55,8 @@ circular_buffer_handler circular_buffer_init(void *pBuffer, size_t width,
     return pcbh;
 }
 
-/**
- * circular_buffer_free() - Free a circular buffer structure instance
- */
-void * circular_buffer_free(circular_buffer_handler *ppcbh)
+/* circular_buffer_free() - Free a circular buffer structure instance */
+void circular_buffer_free(circular_buffer_handler *ppcbh)
 {
     assert(ppcbh);
 
@@ -80,9 +66,7 @@ void * circular_buffer_free(circular_buffer_handler *ppcbh)
     return;
 }
 
-/**
- * circular_buffer_instance_init() - Initialize a circular_buffer instance
- */
+/* circular_buffer_instance_init() - Initialize a circular_buffer instance */
 void circular_buffer_instance_init(circular_buffer *pcbinst, void *pBuffer,
         size_t width, uint16_t size)
 {
@@ -97,10 +81,8 @@ void circular_buffer_instance_init(circular_buffer *pcbinst, void *pBuffer,
     circular_buffer_reset(pcbinst);
 }
 
-/**
- * circular_buffer_instance_free() - Frees the circular_buffer instance data 
- *  				     buffer pointer.
- */
+/* circular_buffer_instance_free() - Frees the circular_buffer instance data 
+ *  				                 buffer pointer. */
 void circular_buffer_instance_free(circular_buffer* pcbinst)
 {
     assert(pcbinst);
@@ -111,10 +93,8 @@ void circular_buffer_instance_free(circular_buffer* pcbinst)
     circular_buffer_reset(pcbinst);
 }
 
-/**
- * circular_buffer_reset() - Reset te circular buffer to initial state,
- *                           head = tail = 0
- */
+/* circular_buffer_reset() - Reset te circular buffer to initial state,
+ *                           head = tail = 0  */
 void circular_buffer_reset(circular_buffer_handler pcbh)
 {
     pcbh->head = 0;
@@ -122,10 +102,8 @@ void circular_buffer_reset(circular_buffer_handler pcbh)
 
 }
 
-/**
- * circular_buffer_dump() - Dump received data and empty the circular buffer,
- *                          head == tail
- */
+/* circular_buffer_dump() - Dump received data and empty the circular buffer,
+ *                          head == tail */
 void circular_buffer_dump(circular_buffer_handler pcbh)
 {
     assert(pcbh);
@@ -133,9 +111,7 @@ void circular_buffer_dump(circular_buffer_handler pcbh)
     pcbh->head = pcbh->tail;
 }
 
-/**
- * circular_buffer_push() - Push data to the circular buffer.
- */
+/* circular_buffer_push() - Push data to the circular buffer. */
 void circular_buffer_push(circular_buffer_handler pcbh, void *data)
 {
     void *s1;
@@ -148,9 +124,7 @@ void circular_buffer_push(circular_buffer_handler pcbh, void *data)
     forward_pointer(pcbh);
 }
 
-/**
- * circular_buffer_put() - Put data in the circular buffer.
- */
+/* circular_buffer_put() - Put data in the circular buffer. */
 int16_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
 {
     int16_t rc = -1;
@@ -168,9 +142,7 @@ int16_t circular_buffer_put(circular_buffer_handler pcbh, void *data)
     return rc;
 }
 
-/**
- * circular_buffer_pop() - Retrieve data from the circular buffer.
- */
+/* circular_buffer_pop() - Retrieve data from the circular buffer. */
 int16_t circular_buffer_pop(circular_buffer_handler pcbh, void *data)
 {
     void *s2;
@@ -188,10 +160,8 @@ int16_t circular_buffer_pop(circular_buffer_handler pcbh, void *data)
 
     return rc;
 }
-/**
- * circular_buffer_drop() - Retrieve data from the circular buffer until it got
- *                          empty.
- */
+/* circular_buffer_drop() - Retrieve data from the circular buffer until it got
+ *                          empty. */
 int16_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
                              uint16_t data_length)
 {
@@ -212,9 +182,7 @@ int16_t circular_buffer_drop(circular_buffer_handler pcbh, void *data,
     return rc;
 }
 
-/**
- * circular_buffer_empty() - Checks if the circular buffer is empty
- */
+/* circular_buffer_empty() - Checks if the circular buffer is empty */
 uint16_t circular_buffer_empty(circular_buffer_handler pcbh)
 {
     uint16_t rc = 0;
@@ -227,9 +195,7 @@ uint16_t circular_buffer_empty(circular_buffer_handler pcbh)
     return rc;
 }
 
-/**
- * circular_buffer_count() - Counts the actual number of elemnts in the buffer
- */
+/* circular_buffer_count() - Counts the actual number of elemnts in the buffer */
 uint16_t circular_buffer_count(circular_buffer_handler pcbh)
 {
     uint16_t count = 0;
@@ -247,10 +213,8 @@ uint16_t circular_buffer_count(circular_buffer_handler pcbh)
     return count;
 } 
 
-/**
- * circular_buffer_size() - Returns the maximum capacity of the buffer
- */
-uint16_t circular_buffer_size(circular_buffer_handler pcbf)
+/* circular_buffer_size() - Returns the maximum capacity of the buffer */
+uint16_t circular_buffer_size(circular_buffer_handler pcbh)
 {
     return pcbh->size;
 }
