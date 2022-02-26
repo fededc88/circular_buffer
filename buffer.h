@@ -5,8 +5,6 @@
  *
  * \author: Federico D. Ceccarelli 
  *
- * \version v0.0
- * 
  * Do you find this project interesting or useful for your work? Please let me
  * know.
  * \see fededc88@@gmail.com
