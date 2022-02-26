@@ -96,11 +96,14 @@ void circular_buffer_instance_init(circular_buffer *pcbinst, void *pBuffer,
                                    size_t width, uint16_t size);
 
 /**
+ * \brief frees a circular_buffer struct instance from memory.
+ *
  * \param [in] pcbinst Pointer to a circular_buffer struct instance.
  *
- * Function free a circular_buffer struct instance, reset it and makes it
- * available to be re initialized with circular_buffer_instance_init(). Funtion
- * does not free data buffer from memory, usser is responsible for that.
+ * Function frees a circular_buffer struct instance, reset it and makes it
+ * available to be re initialized with circular_buffer_instance_init().
+ *
+ * Funtion does not free data buffer from memory, user is responsible for that.
  */
 void circular_buffer_instance_free(circular_buffer* pcbinst);
 
