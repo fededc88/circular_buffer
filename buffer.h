@@ -74,7 +74,7 @@ circular_buffer_handler circular_buffer_init(void *pBuffer, size_t width,
  * circular_buffer_init(). Funtion does not free data buffer form memory, usser
  * is responsible for that.
  */
-void * circular_buffer_free(circular_buffer_handler *ppcbh);
+void circular_buffer_free(circular_buffer_handler *ppcbh);
 
 /**
  * @fn circular_buffer_instance_init()

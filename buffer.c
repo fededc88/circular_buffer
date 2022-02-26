@@ -77,7 +77,7 @@ void * circular_buffer_free(circular_buffer_handler *ppcbh)
     free(*ppcbh);
     *ppcbh = NULL; 
 
-    return *ppcbh;
+    return;
 }
 
 /**
@@ -252,7 +252,7 @@ uint16_t circular_buffer_count(circular_buffer_handler pcbh)
  */
 uint16_t circular_buffer_size(circular_buffer_handler pcbf)
 {
-    return pcbf->size;
+    return pcbh->size;
 }
 
 //
