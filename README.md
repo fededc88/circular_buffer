@@ -11,6 +11,10 @@ This repo includes [Unity Test](https://github.com/ThrowTheSwitch/Unity) as a su
 git clone https://github.com/fededc88/circular_buffer.git --recurse-submodules -j<n_cores>
 ```
 
+## Documentation
+
+You could find detailed Doxygen documentation clicking [here](https://fededc88.github.io/circular_buffer/).
+
 ## Referencing
 
 author: ***[Federico D. Ceccarelli](https://github.com/fededc88)***
