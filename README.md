@@ -41,36 +41,36 @@ I am running some local test for specific algorithms using
 testing framework for C applications. Unity is the unit test framework provided
 with Ceedling that give us all of the test assertions. Unity is written in 100%
 pure C code. It follows ANSI standards while supporting most embedded compiler
-quirks. To run them, just clone the recursively the repo and get a C/C++
+quirks. To run them, just install  ceedling and get a C/C++
 compiller to have the framework running. 
 
 Ceedling requires Ruby to run and uses GCC to build each test.
 
-* Install Ruby
-** apt (Debian or Ubuntu)
+* [1] Install Ruby
+  * apt (Debian or Ubuntu)
 
-```
-sudo apt-get install ruby-full
-```
+  ```
+  sudo apt-get install ruby-full
+  ```
 
-* Install Ceedling with the Ruby "gem" tool
+* [2] Install Ceedling with the Ruby "gem" tool
 
-```
-gem install ceedling
-```
+  ```
+  gem install ceedling
+  ```
 
-* Install GCC 
-** apt (Debian or Ubuntu)
+* [3] Install GCC 
+  * apt (Debian or Ubuntu)
 
-```
-sudo apt install build-essential
-```
+  ```
+  sudo apt install build-essential
+  ```
 
-And them, to compile source files and execute tests run:
+* And them, to compile source files and execute tests run:
 
-```
-ceedling test
-```
+  ```
+  ceedling test
+  ```
 
 Ceedling will present you the results as console outputs. 
 
