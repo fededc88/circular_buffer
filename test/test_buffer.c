@@ -1,7 +1,10 @@
+#ifdef TEST
+
 #include "unity.h"
 
-#include "TestBuffer.h"
 #include "buffer.h"
+
+#define ARRAY_LEN 1000
 
 /* generic test struct declaration */
 struct test 
@@ -127,8 +130,13 @@ void test_put_pop(void)
 
 void test_circular_buffer_free(void)
 {
-    TEST_ASSERT_NULL_MESSAGE(circular_buffer_free(&cbh), "cbh != NULL" );
+    circular_buffer_free(&cbh);
+    TEST_ASSERT_NULL_MESSAGE(cbh, "cbh != NULL" );
 }
+
+/*
+
+  **  commented due to ceedling implementation **
 
 int main(void)
 {
@@ -167,7 +175,6 @@ int main(void)
 
     return UNITY_END();
 }
+*/
 
-// 
-// End of file.
-//
+#endif // TEST
