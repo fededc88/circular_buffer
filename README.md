@@ -1,10 +1,17 @@
 # General Purpouse Circular Buffer
 
-This C library is supposed to solve one of the most common problems when developing. Implements a bunch of functions to deal with an user defined array of any kind as a circular buffer.
+This C library is supposed to solve one of the most common problems when
+developing. Implements a bunch of functions to deal with an user defined array
+of any kind as a circular buffer.
 
-Users should statically allocate on memory an array of any kind and provide to the library the underlying array pointer, the array size, and the size of the elements when initializing the circular buffer library and it will return the pointer to a circular buffer handler to them.                                            
+Users should statically allocate on memory an array of any kind and provide to
+the library the underlying array pointer, the array size, and the size of the
+elements when initializing the circular buffer library and it will return the
+pointer to a circular buffer handler to them.                                            
                                                                               
-Systems which cannot use dynamic memory simply need to statically allocate memory for a buffer struct instance and take a look to circular_buffer_struct_init() function to initialize it.
+Systems which cannot use dynamic memory simply need to statically allocate
+memory for a buffer struct instance and take a look to
+circular_buffer_struct_init() function to initialize it.
 
 ## Documentation
 
@@ -12,7 +19,7 @@ You could find detailed Doxygen documentation clicking [here](https://fededc88.g
 
 ## Folder structure
 
-* **buffer**: Contains the circular buffer library source and header files.
+* **src**: Contains the circular buffer library source and header files.
 
 * **test**: Contains the unit tests related to different algorithms of the
   project. 
@@ -21,23 +28,51 @@ You could find detailed Doxygen documentation clicking [here](https://fededc88.g
 
 ### Get the repo
 
-This repo includes [Unity Test](https://github.com/ThrowTheSwitch/Unity) as a submodule, so in order to clone and get the unit testing framework built for C test do:
+In order to clone and get repo do:
 
 ```
-git clone https://github.com/fededc88/circular_buffer.git --recurse-submodules -j<n_cores>
+git clone https://github.com/fededc88/circular_buffer.git 
 ```
 
 ## Testing
 
-I am running some local test for specific algorithms using [Unitest](http://www.throwtheswitch.org/unity). Unity is written in 100% pure C code. It follows ANSI standards while supporting most embedded compiler quirks. To run them, just clone the recursively the repo and get a C/C++ compiller to have the framework running. 
+I am running some local test for specific algorithms using
+[Ceedling](http://www.throwtheswitch.org/ceedling). Ceedling is an automated
+testing framework for C applications. Unity is the unit test framework provided
+with Ceedling that give us all of the test assertions. Unity is written in 100%
+pure C code. It follows ANSI standards while supporting most embedded compiler
+quirks. To run them, just clone the recursively the repo and get a C/C++
+compiller to have the framework running. 
+
+Ceedling requires Ruby to run and uses GCC to build each test.
+
+* Install Ruby
+** apt (Debian or Ubuntu)
+
+```
+sudo apt-get install ruby-full
+```
+
+* Install Ceedling with the Ruby "gem" tool
+
+```
+gem install ceedling
+```
+
+* Install GCC 
+** apt (Debian or Ubuntu)
+
+```
+sudo apt install build-essential
+```
 
 And them, to compile source files and execute tests run:
 
 ```
-cd path_to_repo/test && make
+ceedling test
 ```
 
-Unitest will present you the results as console outputs. 
+Ceedling will present you the results as console outputs. 
 
 ## Referencing
 
